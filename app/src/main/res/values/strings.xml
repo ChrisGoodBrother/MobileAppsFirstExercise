@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">FirstExercise</string>
+    <string name="welcome_text">Welcome back</string>
+    <string name="sign_in_text">sign in to access your account</string>
+    <string name="email">Enter your email</string>
+    <string name="password">Password</string>
+    <string name="checkbox_text">Remember me</string>
+    <string name="forgot_text">Forgot password ?</string>
+    <string name="button_text">Next</string>
+    <string name="register_text">New member?<font color='#6C63FF'> Register now</font></string>
+
+    <string name="get_started">Get started</string>
+    <string name="create_text">by creating a new account</string>
+    <string name="full_name">Full name</string>
+    <string name="valid_email">Valid email</string>
+    <string name="phone_number">Phone number</string>
+    <string name="strong_pass">Strong password</string>
+    <string name="terms">By checking the box you agree to our <font color='#6C63FF'>Terms</font> and <font color='#6C63FF'>Conditions</font>.</string>
+    <string name="already_text">Already a member?<font color='#6C63FF'> Log in</font></string>
+
+</resources>
