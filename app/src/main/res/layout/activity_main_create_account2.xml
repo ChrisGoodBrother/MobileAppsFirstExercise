@@ -44,7 +44,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/mainTitle"
+        android:id="@+id/getStarted"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="67dp"
@@ -58,7 +58,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/smallText"
+        android:id="@+id/creatingNewAccount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
@@ -68,7 +68,7 @@
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/getStarted" />
 
     <EditText
         android:id="@+id/password"
@@ -100,7 +100,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="83dp"
-        android:layout_marginBottom="58dp"
+        android:layout_marginBottom="41dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/already_text"
         android:textStyle="bold"
@@ -144,7 +144,7 @@
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/smallText" />
+        app:layout_constraintTop_toBottomOf="@+id/creatingNewAccount" />
 
     <CheckBox
         android:id="@+id/checkBoxPage2"
