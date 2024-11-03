@@ -6,103 +6,107 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <EditText
-        android:id="@+id/editTextTextEmailAddress2"
+    <com.google.android.material.textfield.TextInputLayout
+        style = "@style/Widget.Material3.TextInputLayout.FilledBox"
+        android:id="@+id/emailEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:ems="10"
+        android:layout_marginTop="19dp"
+        app:endIconMode="custom"
         android:hint="@string/valid_email"
         android:inputType="textEmailAddress"
-        app:layout_constraintDimensionRatio=""
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+        app:layout_constraintTop_toBottomOf="@+id/fullNameEdit"
+        app:boxBackgroundColor="@color/black"
+        app:endIconDrawable="@drawable/mail"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="50dp"
+            android:textSize="24sp"
+            />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/mainImage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginTop="42dp"
+        android:layout_height="251dp"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="25dp"
         android:scaleType="fitCenter"
         android:src="@drawable/undraw_adventure_map_hnin"
-        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/welcomeBackText"
+        android:id="@+id/mainTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginStart="67dp"
+        android:layout_marginTop="159dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/get_started"
         android:textColor="#252525"
-        android:textSize="36sp"
-        android:textStyle="bold"
+        android:textSize="44sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/signInText"
+        android:id="@+id/smallText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="8dp"
-        android:height="17.07dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/create_text"
         android:textColor="#252525"
+        android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/welcomeBackText" />
+        app:layout_constraintTop_toBottomOf="@+id/mainTitle" />
 
     <EditText
-        android:id="@+id/editTextTextPassword"
+        android:id="@+id/passwordEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="19dp"
         android:ems="10"
         android:hint="@string/strong_pass"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneEdit" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/nextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="25dp"
         android:background="#6C63FF"
         android:fontFamily="@font/montserrat"
         android:text="@string/button_text"
         android:textColor="#FCFCFC"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/bottomText"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft" />
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+        android:id="@+id/bottomText"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginBottom="58dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/already_text"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintStart_toStartOf="@+id/guidelineLeft" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guidelineLeft"
@@ -119,41 +123,39 @@
         app:layout_constraintGuide_end="30dp" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/phoneEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="19dp"
         android:ems="10"
         android:hint="@string/phone_number"
         android:inputType="phone"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress2" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEdit" />
 
     <EditText
-        android:id="@+id/editTextText"
+        android:id="@+id/fullNameEdit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="36dp"
         android:ems="10"
         android:hint="@string/full_name"
         android:inputType="text"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/signInText" />
+        app:layout_constraintTop_toBottomOf="@+id/smallText" />
 
     <CheckBox
-        android:id="@+id/checkBox2"
+        android:id="@+id/checkBoxPage2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="19dp"
         android:text="@string/terms"
         android:textSize="9sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
