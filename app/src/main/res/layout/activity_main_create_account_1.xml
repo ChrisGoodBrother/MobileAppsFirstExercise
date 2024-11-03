@@ -9,14 +9,12 @@
     <ImageView
         android:id="@+id/mainImage"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="251dp"
         android:layout_marginStart="52dp"
         android:layout_marginTop="42dp"
         android:scaleType="fitCenter"
         android:src="@drawable/undraw_adventure_map_hnin"
-        app:layout_constraintDimensionRatio="w,1:1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,14 +23,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="230dp"
+        android:layout_marginTop="180dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/welcome_text"
         android:textColor="#252525"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,31 +38,29 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="78dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="4dp"
         android:height="17.07dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/sign_in_text"
         android:textColor="#252525"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/mainTitle" />
 
     <EditText
-        android:id="@+id/editTextTextEmailAddress"
+        android:id="@+id/EmailAddress"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="95dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintDimensionRatio=""
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/smallText" />
 
     <EditText
-        android:id="@+id/passwordEdit"
+        android:id="@+id/password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
@@ -73,7 +68,7 @@
         android:hint="@string/password"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/EmailAddress" />
 
     <CheckBox
         android:id="@+id/checkBox"
@@ -83,25 +78,25 @@
         android:text="@string/checkbox_text"
         android:textColor="#252525"
         android:textSize="11sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/textView"
+        app:layout_constraintBaseline_toBaselineOf="@+id/forgotPassword"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/forgotPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="17dp"
         android:text="@string/forgot_text"
         android:textColor="#6C63FF"
         android:textSize="11sp"
         app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEdit" />
+        app:layout_constraintTop_toBottomOf="@+id/password" />
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="100dp"
+        android:layout_marginBottom="97dp"
         android:background="#6C63FF"
         android:fontFamily="@font/montserrat"
         android:text="@string/button_text"
@@ -115,11 +110,11 @@
         android:id="@+id/bottomText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginTop="23dp"
         android:fontFamily="@font/montserrat"
         android:text="@string/register_text"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/guidelineRight"
         app:layout_constraintStart_toStartOf="@+id/guidelineLeft"
         app:layout_constraintTop_toBottomOf="@+id/nextButton" />
 
