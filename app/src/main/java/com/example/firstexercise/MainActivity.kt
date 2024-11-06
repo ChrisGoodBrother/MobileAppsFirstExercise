@@ -22,9 +22,5 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_create_account_1)
 
-        findViewById<CheckBox>(R.id.checkBox)
-            .setOnCheckedChangeListener { buttonView, isChecked ->
-                Log.d("CHECKBOXES", "Remember me is checked: $isChecked")
-            }
     }
 }
