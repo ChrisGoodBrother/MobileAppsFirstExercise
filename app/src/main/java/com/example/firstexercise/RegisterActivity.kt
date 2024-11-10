@@ -6,15 +6,15 @@ import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 
-class MainActivity : ComponentActivity() {
+class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_main_create_account_1)
 
-        val registerLink = findViewById<TextView>(R.id.bottomText)
-        registerLink.setOnClickListener {
-            val intent = Intent(this, RegisterActivity::class.java)
+        val loginLink = findViewById<TextView>(R.id.bottomText)
+        loginLink.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
 
