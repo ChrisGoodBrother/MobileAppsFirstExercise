@@ -11,6 +11,7 @@
         
     Login:
 
+        (fixed credentials test - 1234)
         Error - Wrong credentials
         Error - Connection timeout
         Success - Successful login
