@@ -2,9 +2,12 @@ package com.example.firstexercise
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -17,6 +20,40 @@ class RegisterActivity : ComponentActivity() {
             val intent = Intent(this, MainActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
+        }
+
+        val credentialsManager = CredentialsManager()
+
+        val fullNameInputLayout = findViewById<TextInputLayout>(R.id.fullNameEdit) //Full Name Layout
+        val validEmailInputLayout = findViewById<TextInputLayout>(R.id.emailEdit) //Valid Email Layout
+        val phoneNumberInputLayout = findViewById<TextInputLayout>(R.id.phoneEdit) //Phone Number Layout
+        val strongPasswordInputLayout = findViewById<TextInputLayout>(R.id.password) //Strong Password Layout
+
+        val fullNameInputText = findViewById<TextInputEditText>(R.id.fullNameInputText).text.toString() //Full Name Text
+        val validEmailInputText = findViewById<TextInputEditText>(R.id.validEmailInputText).text.toString() //Valid Email Text
+        val phoneNumberInputText = findViewById<TextInputEditText>(R.id.phoneNumberInputText).text.toString() //Phone Number Text
+        val strongPasswordInputText = findViewById<TextInputEditText>(R.id.strongPasswordInputText).text.toString() //Strong Password Text
+
+        findViewById<Button>(R.id.nextButton).setOnClickListener() {
+
+            if(!credentialsManager.fullNameIsNotEmpty(fullNameInputText)) {
+                fullNameInputLayout.error = "Fullname is empty"
+            }
+
+            if(!credentialsManager.isEmailValid(validEmailInputText)) {
+                validEmailInputLayout.error = "Wrong email"
+                validEmailInputLayout.isErrorEnabled = true
+            }
+
+            if(!credentialsManager.phoneNumberIsNotEmpty(phoneNumberInputText)) {
+                phoneNumberInputLayout.error = "Phone number is empty"
+                phoneNumberInputLayout.isErrorEnabled = true
+            }
+
+            if(!credentialsManager.passwordIsNotEmpty(strongPasswordInputText)) {
+                strongPasswordInputLayout.error = "Password is empty"
+                strongPasswordInputLayout.isErrorEnabled = true
+            }
         }
 
     }

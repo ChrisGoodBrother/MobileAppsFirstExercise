@@ -10,6 +10,14 @@ class CredentialsManager {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"))
 
+    fun fullNameIsNotEmpty(fullname: String): Boolean {
+        return fullname.isNotEmpty()
+    }
+
+    fun phoneNumberIsNotEmpty(phoneNumber: String): Boolean {
+        return phoneNumber.isNotEmpty()
+    }
+
     fun isEmailValid(email: String): Boolean {
         return Regex(emailPattern).matches(email)
     }
