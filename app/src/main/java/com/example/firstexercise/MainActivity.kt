@@ -2,6 +2,7 @@ package com.example.firstexercise
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import android.widget.TextView
 import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
@@ -27,8 +28,25 @@ class MainActivity : ComponentActivity() {
         val emailInputLayout = findViewById<TextInputLayout>(R.id.EmailAddress) //Email Layout
         val passwordInputLayout = findViewById<TextInputLayout>(R.id.password) //Password Layout
 
-        val emailInputText = findViewById<TextInputEditText>(R.id.EmailAddress) //Email Text
-        val passwordInputText = findViewById<TextInputEditText>(R.id.password) //Password Text
+        val emailInputText = findViewById<TextInputEditText>(R.id.emailInputText).text.toString() //Email Text
+        val passwordInputText = findViewById<TextInputEditText>(R.id.passwordInputText).text.toString() //Password Text
 
+        findViewById<Button>(R.id.nextButton).setOnClickListener() {
+            if(!credentialsManager.isEmailValid(emailInputText)) {
+                emailInputLayout.error = "Wrong email"
+                emailInputLayout.isErrorEnabled = true
+            }
+            else {
+                emailInputLayout.isErrorEnabled = false
+            }
+
+            if(!credentialsManager.passwordIsNotEmpty(passwordInputText)) {
+                passwordInputLayout.error = "Password is empty"
+                passwordInputLayout.isErrorEnabled = true
+            }
+            else {
+                passwordInputLayout.isErrorEnabled = false
+            }
+        }
     }
 }

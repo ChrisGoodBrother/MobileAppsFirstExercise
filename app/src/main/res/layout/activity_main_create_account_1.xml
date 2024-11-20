@@ -65,6 +65,7 @@
         app:boxCornerRadiusTopStart="10dp"
 >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/emailInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/email"
@@ -91,6 +92,7 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordInputText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
