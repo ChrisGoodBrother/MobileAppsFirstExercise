@@ -32,41 +32,54 @@ class RegisterActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.activity_main_create_account2)
+        setContentView(R.layout.register_activity)
 
         val loginLink = findViewById<TextView>(R.id.bottomText)
         loginLink.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
 
         val credentialsManager = CredentialsManager()
 
-        val fullNameInputText = fullNameInputText
-        val validEmailInputText = validEmailInputText
-        val phoneNumberInputText = phoneNumberInputText
-        val strongPasswordInputText = strongPasswordInputText
-
         findViewById<Button>(R.id.nextButton).setOnClickListener {
+
+            val fullNameInputText = fullNameInputText
+            val validEmailInputText = validEmailInputText
+            val phoneNumberInputText = phoneNumberInputText
+            val strongPasswordInputText = strongPasswordInputText
 
             if(!credentialsManager.fullNameIsNotEmpty(fullNameInputText)) {
                 fullNameInputLayout.error = "Fullname is empty"
+                fullNameInputLayout.isErrorEnabled = true
+            }
+            else {
+                fullNameInputLayout.isErrorEnabled = false
             }
 
             if(!credentialsManager.isEmailValid(validEmailInputText)) {
                 validEmailInputLayout.error = "Wrong email"
                 validEmailInputLayout.isErrorEnabled = true
             }
+            else {
+                validEmailInputLayout.isErrorEnabled = false
+            }
 
             if(!credentialsManager.phoneNumberIsNotEmpty(phoneNumberInputText)) {
                 phoneNumberInputLayout.error = "Phone number is empty"
                 phoneNumberInputLayout.isErrorEnabled = true
             }
+            else {
+                phoneNumberInputLayout.isErrorEnabled = false
+            }
 
             if(!credentialsManager.passwordIsNotEmpty(strongPasswordInputText)) {
                 strongPasswordInputLayout.error = "Password is empty"
                 strongPasswordInputLayout.isErrorEnabled = true
+            }
+            else {
+                strongPasswordInputLayout.isErrorEnabled = false
             }
         }
 
