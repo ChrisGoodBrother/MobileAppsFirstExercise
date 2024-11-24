@@ -27,6 +27,6 @@ class CredentialsManager {
     }
 
     fun credentialsAreCorrect(email: String, password: String): Boolean {
-        return email == "test" && password == "1234"
+        return email == "test@te.stz" && password == "1234"
     }
 }

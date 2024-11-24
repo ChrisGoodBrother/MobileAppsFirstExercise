@@ -11,6 +11,16 @@ import com.google.android.material.textfield.TextInputLayout
 
 class MainActivity : ComponentActivity() {
 
+    private val emailInputLayout: TextInputLayout
+        get() = findViewById(R.id.EmailAddress) //Email Layout
+    private val passwordInputLayout: TextInputLayout
+        get() = findViewById(R.id.password) //Password Layout
+    private val emailInputText: String
+        get() = findViewById<TextInputEditText>(R.id.emailInputText).text.toString() //Email Text
+    private val passwordInputText: String
+        get() = findViewById<TextInputEditText>(R.id.passwordInputText).text.toString() //Password Text
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -25,13 +35,10 @@ class MainActivity : ComponentActivity() {
 
         val credentialsManager = CredentialsManager()
 
-        val emailInputLayout = findViewById<TextInputLayout>(R.id.EmailAddress) //Email Layout
-        val passwordInputLayout = findViewById<TextInputLayout>(R.id.password) //Password Layout
+        val emailInputText = emailInputText
+        val passwordInputText = passwordInputText
 
-        val emailInputText = findViewById<TextInputEditText>(R.id.emailInputText).text.toString() //Email Text
-        val passwordInputText = findViewById<TextInputEditText>(R.id.passwordInputText).text.toString() //Password Text
-
-        findViewById<Button>(R.id.nextButton).setOnClickListener() {
+        findViewById<Button>(R.id.nextButton).setOnClickListener {
             if(!credentialsManager.isEmailValid(emailInputText)) {
                 emailInputLayout.error = "Wrong email"
                 emailInputLayout.isErrorEnabled = true

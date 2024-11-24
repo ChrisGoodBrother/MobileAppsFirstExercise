@@ -10,6 +10,25 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 
 class RegisterActivity : ComponentActivity() {
+
+    private val fullNameInputLayout: TextInputLayout
+        get() = findViewById(R.id.fullNameEdit) //Full Name Layout
+    private val validEmailInputLayout: TextInputLayout
+        get() = findViewById(R.id.emailEdit) //Valid Email Layout
+    private val phoneNumberInputLayout: TextInputLayout
+        get() = findViewById(R.id.phoneEdit) //Phone Number Layout
+    private val strongPasswordInputLayout: TextInputLayout
+        get() = findViewById(R.id.password) //Strong Password Layout
+
+    private val fullNameInputText: String
+        get() = findViewById<TextInputEditText>(R.id.fullNameInputText).text.toString() //Full Name Text
+    private val validEmailInputText: String
+        get() = findViewById<TextInputEditText>(R.id.validEmailInputText).text.toString() //Valid Email Text
+    private val phoneNumberInputText: String
+        get() = findViewById<TextInputEditText>(R.id.phoneNumberInputText).text.toString() //Phone Number Text
+    private val strongPasswordInputText: String
+        get() = findViewById<TextInputEditText>(R.id.strongPasswordInputText).text.toString() //Strong Password Text
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -24,17 +43,12 @@ class RegisterActivity : ComponentActivity() {
 
         val credentialsManager = CredentialsManager()
 
-        val fullNameInputLayout = findViewById<TextInputLayout>(R.id.fullNameEdit) //Full Name Layout
-        val validEmailInputLayout = findViewById<TextInputLayout>(R.id.emailEdit) //Valid Email Layout
-        val phoneNumberInputLayout = findViewById<TextInputLayout>(R.id.phoneEdit) //Phone Number Layout
-        val strongPasswordInputLayout = findViewById<TextInputLayout>(R.id.password) //Strong Password Layout
+        val fullNameInputText = fullNameInputText
+        val validEmailInputText = validEmailInputText
+        val phoneNumberInputText = phoneNumberInputText
+        val strongPasswordInputText = strongPasswordInputText
 
-        val fullNameInputText = findViewById<TextInputEditText>(R.id.fullNameInputText).text.toString() //Full Name Text
-        val validEmailInputText = findViewById<TextInputEditText>(R.id.validEmailInputText).text.toString() //Valid Email Text
-        val phoneNumberInputText = findViewById<TextInputEditText>(R.id.phoneNumberInputText).text.toString() //Phone Number Text
-        val strongPasswordInputText = findViewById<TextInputEditText>(R.id.strongPasswordInputText).text.toString() //Strong Password Text
-
-        findViewById<Button>(R.id.nextButton).setOnClickListener() {
+        findViewById<Button>(R.id.nextButton).setOnClickListener {
 
             if(!credentialsManager.fullNameIsNotEmpty(fullNameInputText)) {
                 fullNameInputLayout.error = "Fullname is empty"
