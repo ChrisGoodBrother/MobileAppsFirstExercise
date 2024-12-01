@@ -57,17 +57,57 @@ class CredentialsManagerTest {
         val email = "wrong email"
         val pass = "wrong password"
 
-        val result = credentialsManager.credentialsAreCorrect(email, pass)
+        val result = credentialsManager.login(email, pass)
         assertFalse(result)
     }
 
     @Test
     fun givenRightCredentials_thenReturnTrue() {
         val credentialsManager = CredentialsManager()
-        val email = "test"
+        val email = "test@g.c"
         val pass = "1234"
 
-        val result = credentialsManager.credentialsAreCorrect(email, pass)
+        val result = credentialsManager.login(email, pass)
         assertTrue(result)
+    }
+
+    //Given proper credentials, when user registers, then create account
+    @Test
+    fun givenProperCredentials_whenUserRegisters_thenCreateAccount() {
+        val credentialsManager = CredentialsManager()
+
+        credentialsManager.register("Fullname", "another@te.st", "600 600 600", "1234")
+
+        val isLoginSuccess = credentialsManager.login("another@te.st", "1234")
+        assertTrue(isLoginSuccess)
+    }
+
+    //Given already used email, when user registers, then return error
+    @Test
+    fun alreadyUsedEmail_whenUserRegisters_thenReturnError() {
+        val credentialsManager = CredentialsManager()
+
+        val isRegisterSuccess = credentialsManager.register("Fullname", "test@g.c", "600 600 600", "1234")
+        assertTrue(!isRegisterSuccess)
+    }
+
+    //Given already used email with different casing, when user registers, then return error
+    @Test
+    fun alreadyUsedEmailDifferentCasing_whenUserRegisters_thenReturnError() {
+        val credentialsManager = CredentialsManager()
+
+        val isRegisterSuccess = credentialsManager.register("Fullname", "TeST@G.C", "600 600 600", "1234")
+        assertTrue(!isRegisterSuccess)
+    }
+
+    //Given used email with different casing, when user logs in, then return success
+    @Test
+    fun givenUsedEmailDifferentCasing_whenUserLogsIn_thenReturnSuccess() {
+        val credentialsManager = CredentialsManager()
+
+        credentialsManager.register("Fullname", "another@te.st", "600 600 600", "1234")
+
+        val isLoginSuccess = credentialsManager.login("anoTHER@te.ST", "1234")
+        assertTrue(isLoginSuccess)
     }
 }

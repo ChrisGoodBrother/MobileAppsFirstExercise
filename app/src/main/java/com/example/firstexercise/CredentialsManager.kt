@@ -2,6 +2,10 @@ package com.example.firstexercise
 
 class CredentialsManager {
 
+    val credentialsMap = mutableMapOf(
+        Pair("test@g.c", "1234")
+    )
+
     private val emailPattern = (("[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
             "\\@" +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
@@ -9,6 +13,19 @@ class CredentialsManager {
             "\\." +
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"))
+
+    fun register(fullname: String, email: String, phoneNumber: String, password: String): Boolean {
+        if(!credentialsMap.contains(email.lowercase())) {
+            credentialsMap.put(email.lowercase(), password)
+            return true
+        }
+
+        return false
+    }
+
+    fun login(email: String, password: String): Boolean {
+        return credentialsMap[email.lowercase()].equals(password)
+    }
 
     fun fullNameIsNotEmpty(fullname: String): Boolean {
         return fullname.isNotEmpty()
@@ -24,9 +41,5 @@ class CredentialsManager {
 
     fun passwordIsNotEmpty(password: String): Boolean {
         return password.isNotEmpty()
-    }
-
-    fun credentialsAreCorrect(email: String, password: String): Boolean {
-        return email == "test@te.stz" && password == "1234"
     }
 }

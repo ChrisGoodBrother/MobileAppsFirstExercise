@@ -34,8 +34,7 @@ class RegisterActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.register_activity)
 
-        val loginLink = findViewById<TextView>(R.id.bottomText)
-        loginLink.setOnClickListener {
+        findViewById<TextView>(R.id.bottomText).setOnClickListener {
             val intent = Intent(this, LoginActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
@@ -51,7 +50,7 @@ class RegisterActivity : ComponentActivity() {
             val strongPasswordInputText = strongPasswordInputText
 
             if(!credentialsManager.fullNameIsNotEmpty(fullNameInputText)) {
-                fullNameInputLayout.error = "Fullname is empty"
+                fullNameInputLayout.error = "Enter your full name"
                 fullNameInputLayout.isErrorEnabled = true
             }
             else {
@@ -59,7 +58,7 @@ class RegisterActivity : ComponentActivity() {
             }
 
             if(!credentialsManager.isEmailValid(validEmailInputText)) {
-                validEmailInputLayout.error = "Wrong email"
+                validEmailInputLayout.error = "Enter a valid email"
                 validEmailInputLayout.isErrorEnabled = true
             }
             else {
@@ -67,7 +66,7 @@ class RegisterActivity : ComponentActivity() {
             }
 
             if(!credentialsManager.phoneNumberIsNotEmpty(phoneNumberInputText)) {
-                phoneNumberInputLayout.error = "Phone number is empty"
+                phoneNumberInputLayout.error = "Enter your phone number"
                 phoneNumberInputLayout.isErrorEnabled = true
             }
             else {
@@ -75,11 +74,23 @@ class RegisterActivity : ComponentActivity() {
             }
 
             if(!credentialsManager.passwordIsNotEmpty(strongPasswordInputText)) {
-                strongPasswordInputLayout.error = "Password is empty"
+                strongPasswordInputLayout.error = "Enter your password"
                 strongPasswordInputLayout.isErrorEnabled = true
             }
             else {
                 strongPasswordInputLayout.isErrorEnabled = false
+            }
+
+            if(!(fullNameInputLayout.isErrorEnabled || validEmailInputLayout.isErrorEnabled || phoneNumberInputLayout.isErrorEnabled || strongPasswordInputLayout.isErrorEnabled)) {
+                if(credentialsManager.register(fullNameInputText, validEmailInputText, phoneNumberInputText, strongPasswordInputText)) {
+                    val intent = Intent(this, LoginActivity::class.java)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                    startActivity(intent)
+                }
+                else {
+                    validEmailInputLayout.error = "This email is already being used"
+                    validEmailInputLayout.isErrorEnabled = true
+                }
             }
         }
 
