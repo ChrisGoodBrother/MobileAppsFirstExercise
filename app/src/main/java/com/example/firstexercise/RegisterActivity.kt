@@ -29,6 +29,8 @@ class RegisterActivity : ComponentActivity() {
     private val strongPasswordInputText: String
         get() = findViewById<TextInputEditText>(R.id.strongPasswordInputText).text.toString() //Strong Password Text
 
+    private val credentialsManager = CredentialsManager()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -39,8 +41,6 @@ class RegisterActivity : ComponentActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
-
-        val credentialsManager = CredentialsManager()
 
         findViewById<Button>(R.id.nextButton).setOnClickListener {
 

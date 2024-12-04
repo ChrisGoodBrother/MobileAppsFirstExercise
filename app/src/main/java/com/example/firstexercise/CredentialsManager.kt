@@ -2,7 +2,7 @@ package com.example.firstexercise
 
 class CredentialsManager {
 
-    object Data {
+    object Data { // Or Dependency Injection Or Fragments
         val credentialsMap = mutableMapOf(
             Pair("test@g.c", "1234")
         )

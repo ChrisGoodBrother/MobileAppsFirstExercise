@@ -20,6 +20,7 @@ class LoginActivity : ComponentActivity() {
     private val passwordInputText: String
         get() = findViewById<TextInputEditText>(R.id.passwordInputText).text.toString() //Password Text
 
+    private val credentialsManager = CredentialsManager()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,8 +33,6 @@ class LoginActivity : ComponentActivity() {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
             startActivity(intent)
         }
-
-        val credentialsManager = CredentialsManager()
 
         findViewById<Button>(R.id.nextButton).setOnClickListener {
 
