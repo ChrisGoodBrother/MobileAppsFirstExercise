@@ -17,5 +17,8 @@
     <string name="strong_pass">Strong password</string>
     <string name="terms">By checking the box you agree to our <font color='#6C63FF'>Terms</font> and <font color='#6C63FF'>Conditions</font>.</string>
     <string name="already_text">Already a member?<font color='#6C63FF'> Log in</font></string>
+    <string name="switch_text">Switch</string>
+    <string name="fragment_a">Fragment A</string>
+    <string name="fragment_b">Fragment B</string>
 
 </resources>
