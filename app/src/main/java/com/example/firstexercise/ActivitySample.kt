@@ -1,6 +1,7 @@
 package com.example.firstexercise
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,35 +10,38 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
 
-class ActivitySample : AppCompatActivity() {
+class ActivitySample :
+    AppCompatActivity(R.layout.activity_sample),
+    FragmentA.EventListener,
+    FragmentB.EventListener
+{
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_sample)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        //If there's no Instance State then place FragmentA
+        if(savedInstanceState == null) {
+            supportFragmentManager.commit {
+                replace<FragmentA>(R.id.fragment_container_view)
+            }
         }
 
-        findViewById<Button>(R.id.switch_button).setOnClickListener() {
 
-            //Get current Fragment
-            val currentFragment = supportFragmentManager.findFragmentById(R.id.fragment_container_view)
+    }
 
-            supportFragmentManager.commit {
-                if(currentFragment is FragmentA) {
-                    //Replace FragmentA with FragmentB
-                    replace<FragmentB>(R.id.fragment_container_view)
-                    setReorderingAllowed(true)
-                    //Add FragmentA to the back stack with name "null"
-                    addToBackStack(null)
-                }
-                else {
-                    //Get FragmentA from the back stack
-                    supportFragmentManager.popBackStack()
-                }
-            }
+    override fun onGoToBPressed() {
+        Log.d("PREVIEW", "B Pressed")
+        supportFragmentManager.commit {
+            replace<FragmentB>(R.id.fragment_container_view)
+            addToBackStack(null)
+        }
+    }
+
+    override fun onGoToAPressed() {
+        Log.d("PREVIEW", "A Pressed")
+        supportFragmentManager.commit {
+            replace<FragmentA>(R.id.fragment_container_view)
+            addToBackStack(null)
         }
     }
 }
