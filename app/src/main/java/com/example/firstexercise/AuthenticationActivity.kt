@@ -7,8 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 
 class AuthenticationActivity : AppCompatActivity(
     R.layout.activity_authentication),
-    RegisterFragment.EventListener,
-    LoginFragment.EventListener
+    AuthenticationInterface
 {
     private val credentialsManager = CredentialsManager()
 

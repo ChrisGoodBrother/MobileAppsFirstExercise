@@ -1,15 +1,12 @@
 package com.example.firstexercise
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.activity.ComponentActivity
-import androidx.activity.enableEdgeToEdge
 import androidx.fragment.app.Fragment
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -17,13 +14,7 @@ import com.google.android.material.textfield.TextInputLayout
 class LoginFragment(private val credentialsManager: CredentialsManager) :
     Fragment(R.layout.login_fragment) {
 
-    //LoginFragment Interface
-    interface EventListener {
-        fun goToRegister()
-        fun goToApp()
-    }
-
-    private var listener: EventListener? = null
+    private var listener: AuthenticationInterface? = null
 
     private lateinit var emailInputLayout: TextInputLayout
     private lateinit var passwordInputLayout: TextInputLayout
@@ -34,7 +25,7 @@ class LoginFragment(private val credentialsManager: CredentialsManager) :
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-        require(context is EventListener) {
+        require(context is AuthenticationInterface) {
             "Activity $context must implement fragment's EventListener"
         }
 

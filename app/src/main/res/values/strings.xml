@@ -21,5 +21,6 @@
     <string name="like_button">Like Button</string>
     <string name="recipe_image">Recipe Image</string>
     <string name="japanese_food_64">Japanese Food(64)</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>
