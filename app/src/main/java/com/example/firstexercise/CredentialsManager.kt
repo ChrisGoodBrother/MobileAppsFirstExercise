@@ -1,5 +1,8 @@
 package com.example.firstexercise
 
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+
 class CredentialsManager {
 
     object Data { // Or Dependency Injection Or Fragments
@@ -16,17 +19,27 @@ class CredentialsManager {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"))
 
+    private val _isLoggedIn = MutableStateFlow(false)
+    val isLoggedIn: StateFlow<Boolean> = _isLoggedIn
+
     fun register(fullname: String, email: String, phoneNumber: String, password: String): Boolean {
         if(!Data.credentialsMap.contains(email.lowercase())) {
             Data.credentialsMap.put(email.lowercase(), password)
             return true
         }
-
         return false
     }
 
     fun login(email: String, password: String): Boolean {
-        return Data.credentialsMap[email.lowercase()].equals(password)
+        if(Data.credentialsMap[email.lowercase()].equals(password)) {
+            _isLoggedIn.value = true
+            return true
+        }
+        return false
+    }
+
+    fun logout() {
+        _isLoggedIn.value = false
     }
 
     fun fullNameIsNotEmpty(fullname: String): Boolean {

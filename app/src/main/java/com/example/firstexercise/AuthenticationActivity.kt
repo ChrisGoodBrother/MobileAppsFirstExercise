@@ -9,16 +9,26 @@ class AuthenticationActivity : AppCompatActivity(
     R.layout.activity_authentication),
     AuthenticationInterface
 {
-    private val credentialsManager = CredentialsManager()
+    private val credentialsManager: CredentialsManager
+        get() = (application as MyApp).credentialsManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        val action = intent.getStringExtra("ACTION")
+
         //If there's no Instance State then place RegisterFragment
         if(savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.authentication_fragment_container_view, RegisterFragment(credentialsManager))
-                .commit()
+            if (action == "LOGIN") {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.authentication_fragment_container_view, LoginFragment(credentialsManager))
+                    .commit()
+            }
+            else {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.authentication_fragment_container_view, RegisterFragment(credentialsManager))
+                    .commit()
+            }
         }
     }
 

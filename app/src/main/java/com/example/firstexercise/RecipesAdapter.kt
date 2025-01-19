@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.progressindicator.CircularProgressIndicator
 
 class RecipesAdapter(private val recipes: List<Recipe>): RecyclerView.Adapter<RecipesAdapter.RecipeViewHolder>() {
 
@@ -33,6 +34,7 @@ class RecipesAdapter(private val recipes: List<Recipe>): RecyclerView.Adapter<Re
         private val likeIcon = itemView.findViewById<ImageButton>(R.id.likeIcon)
         private val shareIcon = itemView.findViewById<ImageButton>(R.id.shareIcon)
         private var isSelected = false
+        private val progressIndicator = itemView.findViewById<CircularProgressIndicator>(R.id.progressIndicator)
 
         fun bind(recipe: Recipe) {
             recipeImage.setImageResource(recipe.image)
