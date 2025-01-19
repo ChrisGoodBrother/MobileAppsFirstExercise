@@ -19,7 +19,7 @@ class CredentialsManager {
             "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
             ")+"))
 
-    private val _isLoggedIn = MutableStateFlow(false)
+    private val _isLoggedIn = MutableStateFlow(true)
     val isLoggedIn: StateFlow<Boolean> = _isLoggedIn
 
     fun register(fullname: String, email: String, phoneNumber: String, password: String): Boolean {

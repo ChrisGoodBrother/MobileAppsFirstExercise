@@ -9,20 +9,20 @@ import android.widget.Button
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
-import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.lifecycle.viewmodel.CreationExtras
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.progressindicator.CircularProgressIndicator
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 
 class RecipesFragment(private val credentialsManager: CredentialsManager): Fragment(R.layout.fragment_recipes) {
@@ -32,6 +32,8 @@ class RecipesFragment(private val credentialsManager: CredentialsManager): Fragm
 
     private val recipesRecyclerView
         get() = requireView().findViewById<RecyclerView>(R.id.recipeList)
+    private val progressIndicator
+        get() = requireView().findViewById<CircularProgressIndicator>(R.id.progressIndicator)
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -76,12 +78,27 @@ class RecipesFragment(private val credentialsManager: CredentialsManager): Fragm
             .lifecycleScope
             .launch {
                 repeatOnLifecycle(Lifecycle.State.STARTED) {
-                    viewModel
-                        .recipesFlow
-                        .collect { recipes ->
-                            recipesRecyclerView.adapter = RecipesAdapter(recipes)
-                            delay(2000L)
-                        }
+                    launch {
+                        viewModel
+                            .recipesFlow
+                            .collect { recipes ->
+                                recipesRecyclerView.adapter = RecipesAdapter(recipes)
+                            }
+                    }
+                    launch {
+                        viewModel
+                            ._loadingState
+                            .collect { loadingState ->
+                                if(loadingState) {
+                                    recipesRecyclerView.visibility = View.GONE
+                                    progressIndicator.visibility = View.VISIBLE
+                                }
+                                else {
+                                    recipesRecyclerView.visibility = View.VISIBLE
+                                    progressIndicator.visibility = View.GONE
+                                }
+                            }
+                    }
                 }
             }
     }
@@ -89,11 +106,25 @@ class RecipesFragment(private val credentialsManager: CredentialsManager): Fragm
 
 class RecipesViewModel: ViewModel() {
     private val queryFlow = MutableStateFlow("")
-    val recipesFlow = queryFlow.asStateFlow().map {
-        query -> listOfRecipes.filter { recipe -> recipe.title.contains(query, ignoreCase = true) || recipe.description.contains(query, ignoreCase = true) }
-    }
+    val _loadingState = MutableStateFlow(false)
+    @OptIn(FlowPreview::class)
+    val recipesFlow = queryFlow
+        .asStateFlow()
+        .debounce(300)
+        .onStart { _loadingState.value = true }
+        .map {
+        query ->
+        _loadingState.value = true
+        delay(2000L)
+        listOfRecipes.filter { recipe ->
+            recipe.title.contains(query, ignoreCase = true) ||
+                    recipe.description.contains(query, ignoreCase = true)
+        }
+    }.onEach { _loadingState.value = false }
 
     fun setQuery(query: String) {
         queryFlow.value = query
     }
+
+
 }
